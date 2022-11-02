@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:whatsapp_clone/pages/select_person_to_chat_page.dart';
 import 'package:whatsapp_clone/providers.dart';
+
+import 'pages/select_a_person_to_chat_page.dart';
 // import 'package:whatsapp_clone/screens/list_chat_screen.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -91,11 +93,11 @@ class _HomeState extends ConsumerState<Home>
           Icons.message,
           color: Colors.white,
         ),
-        onPressed: () => {}
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (_) => const SelectPersonToChat()),
-        // ),
+        onPressed: () => 
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const SelectPersonToChat()),
+        ),
       ),
     );
   }

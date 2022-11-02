@@ -19,8 +19,44 @@ class SelectPersonToChat extends ConsumerWidget {
         child: StreamBuilder<List<UserData>>(
           stream: ref.read(databaseProvider)!.getUsers(),
           builder: ((context, snapshot) {
-            
-          } ),)),
+            if (snapshot.hasError) {
+              return const Center(
+                child: Text("Something went wrong!"),
+              );
+            }
+            if(!snapshot.hasData) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            final users = snapshot.data ?? [];
+            return ListView.builder(
+              itemCount: users.length,
+              itemBuilder: ((context, index) {
+                //type UserData
+                final user = users[index];
+                // get our current user
+                final myUser = ref.read(firebaseAuthProvider).currentUser!;
+                if(user.uid == myUser.uid) {
+                  return Container();
+                }
+                return Column(
+                  children: [
+                    ListTile(
+                      title: Text(user.name),
+                      onTap: () async {
+                        //TODO
+                      },
+                    ),
+                    const Divider(),
+                  ],
+                );
+              }),
+            );
+          } 
+          ),  
+        )
+      ),
     );
   }
 }
