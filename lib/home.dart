@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:whatsapp_clone/pages/select_person_to_chat_page.dart';
 import 'package:whatsapp_clone/providers.dart';
+import 'package:whatsapp_clone/screens/list_chat_screen.dart';
 
 import 'pages/select_a_person_to_chat_page.dart';
 // import 'package:whatsapp_clone/screens/list_chat_screen.dart';
@@ -82,7 +83,7 @@ class _HomeState extends ConsumerState<Home>
         controller: _tabController,
         children: const <Widget>[
           OtherTab(tabName: "Camera"),
-          // ListChatScreen(),
+          ListChatScreen(),
           OtherTab(tabName: "Status"),
           OtherTab(tabName: "Calls"),
         ],
