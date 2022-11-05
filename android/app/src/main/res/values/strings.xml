@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="com_auth0_domain">dev-3d4gvg4pu74fvn37.us.auth0.com</string>
+    <string name="com_auth0_scheme">https</string>
+</resources>

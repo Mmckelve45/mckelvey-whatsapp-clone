@@ -51,6 +51,13 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders += [auth0Domain: "@string/com_auth0_domain", auth0Scheme: "@string/com_auth0_scheme"]
+        manifestPlaceholders += [
+            'appAuthRedirectScheme': 'com.example.whatsapp_clone'
+        ]   
+
+        // manifestPlaceholders['auth0Domain'] = "@string/com_auth0_domain"
+        // manifestPlaceholders['auth0Scheme'] = "@string/com_auth0_scheme"
     }
 
     buildTypes {
