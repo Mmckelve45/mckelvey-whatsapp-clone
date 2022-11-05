@@ -2,17 +2,29 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone/providers.dart';
+// import 'package:whatsapp_clone/auth0_flutter.dart';
+import 'package:auth0_flutter/auth0_flutter.dart';
 
 class SignUpLogIn extends ConsumerWidget {
-  const SignUpLogIn({Key? key}) : super(key: key);
+  final Auth0? auth0;
+  const SignUpLogIn({this.auth0, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {
     final nameController = TextEditingController();
     final emailController = TextEditingController();
     final pwdController = TextEditingController();
+    
+    late Auth0 auth0;
+
+    @override
+    void initState() {
+      super.initState();
+      auth0 = Auth0(dotenv.env['AUTH0_DOMAIN']!, dotenv.env['AUTH0_CLIENT_ID']!);
+    }
 
     return Center(
       child: Scaffold(
@@ -25,6 +37,16 @@ class SignUpLogIn extends ConsumerWidget {
               children: [
                 // sign in announymsly with firebase
                 const Text("Sign in/Sign Up"),
+                ElevatedButton(
+                  onPressed: () async {
+                    final credentials =
+                        await auth0.webAuthentication().login();
+
+                    setState(() {
+                      _credentials = credentials;
+                    });
+                  },
+                  child: const Text("Log in")),
                 ElevatedButton(
                   child: const Text("Sign up"),
                   onPressed: () async {

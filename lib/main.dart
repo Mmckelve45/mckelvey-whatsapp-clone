@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone/auth/auth_widget.dart';
 import 'package:whatsapp_clone/home.dart';
 import 'package:whatsapp_clone/sign_up_log_in.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'firebase_options.dart';
 
@@ -15,6 +16,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await dotenv.load();
   runApp(const ProviderScope(child: MyApp()));
 }
 
